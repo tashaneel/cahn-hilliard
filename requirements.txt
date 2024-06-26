@@ -1,2 +1,1 @@
 pybamm[plot]==24.1
-
