@@ -1,0 +1,34 @@
+*.pkl
+*.DS_Store
+build
+generated
+private
+.vscode
+.idea
+workspace
+deploy
+htmlcov
+.coverage
+
+# Figures
+*.png
+*.pdf
+*.jpg
+*.eps
+figures/
+
+# Python cache
+*__pycache__
+*.cache
+.ipynb_checkpoints/
+
+# running files
+*.pyc
+*.py~
+.~lock*
+*.swp
+
+# setup.py files
+*.egg-info
+dist/
+
