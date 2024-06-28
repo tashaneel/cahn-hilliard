@@ -1,6 +1,13 @@
 import pybamm
 
 
+class ECM(pybamm.BaseModel):
+    def __init__(self, name="Equivalent circuit model"):
+        super().__init__(name)
+
+        # do plett ECM model here
+
+
 class MySPM(pybamm.lithium_ion.BaseModel):
     """
     Single Particle Model (SPM) model of a lithium-ion battery.
