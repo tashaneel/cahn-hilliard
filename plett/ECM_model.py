@@ -51,7 +51,6 @@ class ECM(pybamm.lithium_ion.BaseModel):
         dzdt = - eta * i / Q
         di_R1dt = - i_R1 / (R_1 * C_1) - i / (R_1 * C_1)
         V_gov = ocv(z) - i * R_0 - i_R1 * R_1 - V
-        #V_gov = - i * R_0 - i_R1 * R_1 - V
         dhdt = abs(eta * i * gamma / Q) * (M - h)
 
         self.rhs = {z: dzdt, h: dhdt, i_R1: di_R1dt}
@@ -75,11 +74,7 @@ class ECM(pybamm.lithium_ion.BaseModel):
         }
 
         # Events specify points at which a solution should terminate
-        '''self.events += [
-            pybamm.Event("Minimum state of charge", z),
-            pybamm.Event("Maximum state of charge", 1 - z),
-        ]'''
-        '''self.events += [
-            pybamm.Event("Minimum voltage [V]", V - 2.56),
-            pybamm.Event("Maximum voltage [V]", 4.26 - V),
-        ]'''
+        self.events += [
+            pybamm.Event("Minimum state of charge", z + 0.0001),
+            pybamm.Event("Maximum state of charge", 1.0001 - z),
+        ]
