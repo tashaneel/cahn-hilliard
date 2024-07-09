@@ -50,14 +50,14 @@ class ECM(pybamm.lithium_ion.BaseModel):
 
         dzdt = - eta * i / Q
         di_R1dt = - i_R1 / (R_1 * C_1) - i / (R_1 * C_1)
-        # V_gov = ocv(z) - i * R_0 - i_R1 * R_1 - V
-        V_gov = - i * R_0 - i_R1 * R_1 - V
+        V_gov = ocv(z) - i * R_0 - i_R1 * R_1 - V
+        #V_gov = - i * R_0 - i_R1 * R_1 - V
         dhdt = abs(eta * i * gamma / Q) * (M - h)
 
         self.rhs = {z: dzdt, h: dhdt, i_R1: di_R1dt}
         self.algebraic = {V: V_gov}
 
-        self.initial_conditions = {z: pybamm.Scalar(0.5), h: pybamm.Scalar(0), V: pybamm.Scalar(0), i_R1: pybamm.Scalar(0)}
+        self.initial_conditions = {z: pybamm.Scalar(0), h: pybamm.Scalar(0.075), V: pybamm.Scalar(0), i_R1: pybamm.Scalar(0)}
 
         ######################
         # (Some) variables
