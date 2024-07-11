@@ -62,7 +62,7 @@ class modified_SPM(pybamm.lithium_ion.BaseModel):
         dcdt = -pybamm.div(N)
         dzdt = - eta * i / Q
         di_R1dt = - i_R1 / (R_1 * C_1) - i / (R_1 * C_1)
-        V_gov = ocv(z) - i * R_0 - i_R1 * R_1 - V
+        V_gov = ocv(pybamm.surf(c)) - i * R_0 - i_R1 * R_1 - V
         dhdt = abs(eta * i * gamma / Q) * (M - h)
 
         self.rhs = {z: dzdt, h: dhdt, i_R1: di_R1dt, c: dcdt}
@@ -86,7 +86,10 @@ class modified_SPM(pybamm.lithium_ion.BaseModel):
             "Dynamic hysteresis voltage [V]": h, 
             "State of charge": z, 
             "Terminal voltage [V]": V,
-            "Time [s]": pybamm.t
+            "Time [s]": pybamm.t,
+            "Concentration [mol.m-3]": c,
+            "Surface concentration [mol.m-3]": pybamm.surf(c),
+            "Flux [mol.m-2.s-1]": N
         }
 
         # Events specify points at which a solution should terminate
